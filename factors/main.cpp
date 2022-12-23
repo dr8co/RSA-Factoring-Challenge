@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <numeric>
 #include <chrono>
+#include "../read_nums.h"
 
 long long mult(long long a, long long b, long long mod) {
     long long result = 0;
@@ -51,14 +52,19 @@ long long brent(long long n, long long x0 = 2, long long c = 1) {
     return g;
 }
 
+int main([[maybe_unused]] int argc, char **argv) {
+    long long factor;
+    std::vector<long long> nums;
 
-int main() {
-    long long num = 982358499459112991;
+    nums = read_nums(std::string(argv[1]));
+    //nums = read_nums("xyz");
     auto start = std::chrono::high_resolution_clock::now();
-    long long fact = brent(num);
+    for (auto num : nums) {
+        factor = brent(num);
+        std::cout << num << " = " << factor << "*" << num / factor << std::endl;
+    }
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-    std::cout << num << " = " << fact << "*" << num / fact << std::endl;
     std::cout << "Time: " << duration.count() << " microseconds" << std::endl;
     return 0;
 }

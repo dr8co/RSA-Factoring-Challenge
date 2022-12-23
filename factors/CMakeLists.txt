@@ -1,3 +1,4 @@
 cmake_minimum_required(VERSION 3.24)
 
-add_executable(factors main.cpp)
+add_executable(factors main.cpp ../read_nums.cpp)
+include_directories(..)

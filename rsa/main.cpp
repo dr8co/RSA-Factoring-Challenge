@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <numeric>
 #include <chrono>
+#include "../read_nums.h"
 
 long long mult(long long a, long long b, long long mod) {
     long long result = 0;
@@ -50,7 +51,6 @@ long long brent(long long n, long long x0 = 2, long long c = 1) {
     }
     return g;
 }
-
 
 int main() {
     long long num = 982358499459112991;
