@@ -3,8 +3,9 @@
 #include <numeric>
 #include <chrono>
 #include "../read_nums.h"
+#include <gmp.h>
 
-long long mult(long long a, long long b, long long mod) {
+long long multiply_mod(long long a, long long b, long long mod) {
     long long result = 0;
     while (b) {
         if (b & 1)
@@ -16,7 +17,7 @@ long long mult(long long a, long long b, long long mod) {
 }
 
 long long f(long long x, long long c, long long mod) {
-    return (mult(x, x, mod) + c) % mod;
+    return (multiply_mod(x, x, mod) + c) % mod;
 }
 
 long long brent(long long n, long long x0 = 2, long long c = 1) {
@@ -36,7 +37,7 @@ long long brent(long long n, long long x0 = 2, long long c = 1) {
             xs = x;
             for (int i = 0; i < m && i < l - k; i++) {
                 x = f(x, c, n);
-                q = mult(q, std::abs(y - x), n);
+                q = multiply_mod(q, std::abs(y - x), n);
             }
             g = std::gcd(q, n);
             k += m;
@@ -57,7 +58,6 @@ int main([[maybe_unused]] int argc, char **argv) {
     std::vector<long long> nums;
 
     nums = read_nums(std::string(argv[1]));
-    //nums = read_nums("xyz");
     auto start = std::chrono::high_resolution_clock::now();
     for (auto num : nums) {
         factor = brent(num);
