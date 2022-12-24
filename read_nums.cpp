@@ -1,10 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include "read_nums.h"
+#include "BigInt.h"
 
-std::vector<long long> read_nums(const std::string &file) {
+std::vector<BigInt> read_nums(const std::string &file) {
     std::fstream fileObj;
-    std::vector<long long> nums;
+    std::vector<BigInt> nums;
     std::string num;
 
     fileObj.open(file, std::ios::in);

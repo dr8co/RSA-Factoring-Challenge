@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
 #include <string>
+#include "BigInt.h"
 
-std::vector<long long> read_nums(const std::string &file);
+std::vector<BigInt> read_nums(const std::string &file);

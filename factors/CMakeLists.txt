@@ -6,4 +6,4 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -Ofast -lgmpxx -lgmp")
 
 include_directories(..)
 
-add_executable(factors main.cpp ../read_nums.cpp)
+add_executable(factors main.cpp ../read_nums.cpp ../BigInt.cpp ../BigInt.h)

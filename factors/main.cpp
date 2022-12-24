@@ -3,11 +3,10 @@
 #include <numeric>
 #include <chrono>
 #include "../read_nums.h"
-#include <gmp.h>
 
-long long multiply_mod(long long a, long long b, long long mod) {
-    long long result = 0;
-    while (b) {
+BigInt multiply_mod(BigInt a, BigInt b, BigInt mod) {
+    BigInt result = 0;
+    while (!Null(b)) {
         if (b & 1)
             result = (result + a) % mod;
         a = (a + a) % mod;
@@ -16,15 +15,15 @@ long long multiply_mod(long long a, long long b, long long mod) {
     return result;
 }
 
-long long f(long long x, long long c, long long mod) {
+BigInt f(BigInt x, BigInt c, BigInt mod) {
     return (multiply_mod(x, x, mod) + c) % mod;
 }
 
-long long brent(long long n, long long x0 = 2, long long c = 1) {
-    long long x = x0;
-    long long g = 1;
-    long long q = 1;
-    long long xs, y;
+BigInt brent(BigInt n, BigInt x0 = 2, BigInt c = 1) {
+    BigInt x = x0;
+    BigInt g = 1;
+    BigInt q = 1;
+    BigInt xs, y;
 
     int m = 128;
     int l = 1;
@@ -54,8 +53,8 @@ long long brent(long long n, long long x0 = 2, long long c = 1) {
 }
 
 int main([[maybe_unused]] int argc, char **argv) {
-    long long factor;
-    std::vector<long long> nums;
+    BigInt factor;
+    std::vector<BigInt> nums;
 
     nums = read_nums(std::string(argv[1]));
     auto start = std::chrono::high_resolution_clock::now();
