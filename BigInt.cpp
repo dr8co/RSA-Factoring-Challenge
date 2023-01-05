@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include "BigInt.h"
 
 BigInt::BigInt(std::string &s) {
@@ -5,7 +6,7 @@ BigInt::BigInt(std::string &s) {
     int n = s.size();
     for (int i = n - 1; i >= 0; i--) {
         if (!isdigit(s[i]))
-            throw ("ERROR");
+            throw std::invalid_argument("ERROR");
         digits.push_back(s[i] - '0');
     }
 }
@@ -21,7 +22,7 @@ BigInt::BigInt(const char *s) {
     digits = "";
     for (int i = strlen(s) - 1; i >= 0; i--) {
         if (!isdigit(s[i]))
-            throw ("ERROR");
+            throw std::invalid_argument("ERROR");
         digits.push_back(s[i] - '0');
     }
 }
@@ -42,7 +43,7 @@ int Length(const BigInt &a) {
 
 int BigInt::operator[](const int index) const {
     if (digits.size() <= index || index < 0)
-        throw ("ERROR");
+        throw std::out_of_range("ERROR");
     return digits[index];
 }
 
@@ -101,7 +102,7 @@ BigInt BigInt::operator++(int temp) {
 
 BigInt &BigInt::operator--() {
     if (digits[0] == 0 && digits.size() == 1)
-        throw ("UNDERFLOW");
+        throw std::underflow_error("UNDERFLOW");
     int i, n = digits.size();
     for (i = 0; digits[i] == 0 && i < n; i++)
         digits[i] = 9;
@@ -146,7 +147,7 @@ BigInt operator+(const BigInt &a, const BigInt &b) {
 
 BigInt &operator-=(BigInt &a, const BigInt &b) {
     if (a < b)
-        throw ("UNDERFLOW");
+        throw std::underflow_error("UNDERFLOW");
     int n = Length(a), m = Length(b);
     int i, t = 0, s;
     for (i = 0; i < n; i++) {
@@ -207,7 +208,7 @@ BigInt operator*(const BigInt &a, const BigInt &b) {
 
 BigInt &operator/=(BigInt &a, const BigInt &b) {
     if (Null(b))
-        throw ("Arithmetic Error: Division By 0");
+        throw std::invalid_argument("Arithmetic Error: Division By 0");
     if (a < b) {
         a = BigInt();
         return a;
@@ -246,7 +247,7 @@ BigInt operator/(const BigInt &a, const BigInt &b) {
 
 BigInt &operator%=(BigInt &a, const BigInt &b) {
     if (Null(b))
-        throw ("Arithmetic Error: Division By 0");
+        throw std::invalid_argument("Arithmetic Error: Division By 0");
     if (a < b) {
         return a;
     }
