@@ -1,4 +1,3 @@
-#include <iostream>
 #include <fstream>
 #include "read_nums.h"
 #include "BigInt.h"
