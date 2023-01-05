@@ -337,7 +337,7 @@ std::istream &operator>>(std::istream &in, BigInt &a) {
     int n = s.size();
     for (int i = n - 1; i >= 0; i--) {
         if (!isdigit(s[i]))
-            throw ("INVALID NUMBER");
+            throw std::invalid_argument("INVALID NUMBER");
         a.digits[n - i - 1] = s[i];
     }
     return in;
