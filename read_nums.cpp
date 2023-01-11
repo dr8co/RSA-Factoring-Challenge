@@ -12,7 +12,8 @@ std::vector<std::string> read_nums(const std::string &file) {
         while (getline(fileObj, num)) {
             nums.push_back(num);
         }
-        fileObj.close();
     }
+    fileObj.close();
+
     return nums;
 }
