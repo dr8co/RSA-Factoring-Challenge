@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <numeric>
 #include <chrono>
-#include "../read_nums.h"
+#include "read_nums.h"
 
 long long multiply_mod(long long a, long long b, long long mod) {
     long long result = 0;
