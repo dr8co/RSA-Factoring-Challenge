@@ -10,7 +10,7 @@ std::vector<std::string> read_nums(const std::string &file) {
 
     if (fileObj.is_open()) {
         while (getline(fileObj, num)) {
-            nums.push_back(num);
+            nums.emplace_back(num);
         }
     }
     fileObj.close();

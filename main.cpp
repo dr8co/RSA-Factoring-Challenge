@@ -52,13 +52,26 @@ long long brent(long long n, long long x0 = 2, long long c = 1) {
     return g;
 }
 
-int main() {
-    long long num = 982358499459112991;
+int main(int argc, char **argv) {
+    if (argc < 2) {
+        std::cout << "Usage: rsa <FILE>" << std::endl;
+        return 1;
+    }
+    std::vector<std::string> nums = read_nums(std::string(argv[1]));
+    long long num, fact;
+
     auto start = std::chrono::high_resolution_clock::now();
-    long long fact = brent(num);
+
+    for (const auto &i: nums) {
+        num = std::strtoll(i.c_str(), nullptr, 10);
+        fact = brent(num);
+        std::cout << num << " = " << fact << "*" << num / fact << std::endl;
+    }
+
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-    std::cout << num << " = " << fact << "*" << num / fact << std::endl;
-    std::cout << "Time: " << duration.count() << " microseconds" << std::endl;
+
+    std::cout << "\nTime: " << duration.count() << " microseconds" << std::endl;
+
     return 0;
 }
