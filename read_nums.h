@@ -4,6 +4,6 @@
 #include <vector>
 #include <string>
 
-std::vector<std::string> read_nums(const std::string &file);
+std::vector<long long> read_nums(const char *file);
 
 #endif // READ_NUMS_H
